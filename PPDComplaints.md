@@ -61,7 +61,7 @@ The image below shows the controls for the editor:
 In a minute, we will copy and paste some code into the editor.  But first, let's look at some shortcuts that will help you work more effectively in the editor:
 
 Shortcut | Action
---- | ---
+:---: | ---
 <kbd>up</kbd> | brings back last executed code
 <kbd>down</kbd> | brings back last executed code
 <kbd>shift</kbd> + <kbd>enter</kbd> | brings back last executed code
