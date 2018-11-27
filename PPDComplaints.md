@@ -58,9 +58,10 @@ The image below shows the controls for the editor:
 
 ![alt text](https://github.com/danieljbradley/cypherphilly/blob/develop/img_tutorial3_editor.PNG?raw=true "Neo4j editor screenshot with arrows and labels")
 
-In a minute, we will copy and paste some code into the editor.  Here are some important shortcuts that will help you use the editor more effectively:
+In a minute, we will copy and paste some code into the editor.  But first, let's look at some shortcuts that will help you work more effectively in the editor:
 
-
+More shortcuts can be found [here](https://neo4j.com/developer/guide-neo4j-browser/#_useful_commands_and_keyboard_shortcuts).
+<kbd>shift</kbd> + <kbd>command</kbd> + <kbd>3</kbd>
 Copy the load cypher queries Below in green per dataset section Complaints, Findings and Complainants
 Run the Queries below, which download and process the CSV into the database
 
