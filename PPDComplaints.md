@@ -60,8 +60,17 @@ The image below shows the controls for the editor:
 
 In a minute, we will copy and paste some code into the editor.  But first, let's look at some shortcuts that will help you work more effectively in the editor:
 
+Shortcut | Action
+--- | ---
+<kbd>up</kbd> | brings back last executed code
+<kbd>down</kbd> | brings back last executed code
+<kbd>shift</kbd> + <kbd>enter</kbd> | brings back last executed code
+
+
 More shortcuts can be found [here](https://neo4j.com/developer/guide-neo4j-browser/#_useful_commands_and_keyboard_shortcuts).
-<kbd>shift</kbd> + <kbd>command</kbd> + <kbd>3</kbd>
+
+
+
 Copy the load cypher queries Below in green per dataset section Complaints, Findings and Complainants
 Run the Queries below, which download and process the CSV into the database
 
