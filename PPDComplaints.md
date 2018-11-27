@@ -31,31 +31,34 @@ Graph DB/Cypher Resources:
 Visualization Ideas:
 + [Scrolly Telly Example](https://philadelphia.maps.arcgis.com/apps/MapJournal/index.html?appid=d498be2dde18426193679f5e9ce0e6e5)
 
-## Setting up a Neo4j Database
+## Set up your Neo4j database
 There are a few ways to get set up with your own Neo4j database:
 
-+ [install the desktop software](https://neo4j.com/download/)
-# Jess/Jason - is there a link for this setting it up on a server:
-+ set up a full version on a server 
++ install the [desktop software](https://neo4j.com/download/)
++ set up a full version on a [server](https://neo4j.com/download-center/#releases)
 + or use Neo4j’s publicly available [Sandboxes](https://neo4j.com/sandbox-v2/) (a place in the cloud where you can practice) - see below for instructions
 
-#### We will walk you through how to set up a Sandbox:
+#### Set up your sandbox:
 
 1. Follow [this link.](https://neo4j.com/sandbox-v2/)
 2. Click __Start Now__ then __Sign Up__ or __Log In__ if you already have an account.
-3. Scroll to __Blank Sandbox__ near the bottom and click __Launch Sandbox__
-4. Under the  __Get Started with your Neo4j Sandbox__,  Click __Visit the Neo4j Browser__ to connect to the database.
+3. Scroll to __Blank Sandbox__ (not Neo4j 3.3) near the bottom and click __Launch Sandbox__.
+4. Wait a few seconds while the Sandbox is set up.
+5. Under the  __Get Started with your Neo4j Sandbox__ #1,  follow the  __Visit the Neo4j Browser__ link.
 
-![alt text](C:\Users\Thinker\OneDrive - Bradley Analytics\Cypher Philly\neo4j\tutorial1.png "Logo Title Text 1")
-
-
-
-## Tour of Neo4j Browser
-
+## Mini-tour of Neo4j browser
+The two images below highlight the main components of the Neo4j Browser
 + On the top is the __editor__
 + On the left hand side is the __sidebar__
 + The rest of the page is the __stream__
 
+![alt text](https://github.com/danieljbradley/cypherphilly/blob/develop/img_tutorial2_neo4jbrowser.png?raw=true "Neo4j Browser screenshot with arrows and labels")
+
+The image below shows the controls for the editor:
+
+![alt text](https://github.com/danieljbradley/cypherphilly/blob/develop/img_tutorial3_editor.PNG?raw=true "Neo4j editor screenshot with arrows and labels")
+
+In a minute, we will copy and paste some code into the editor.  Here are some important shortcuts that will help you use the editor more effectively:
 
 
 Copy the load cypher queries Below in green per dataset section Complaints, Findings and Complainants
