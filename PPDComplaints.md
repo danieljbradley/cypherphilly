@@ -70,6 +70,11 @@ Shortcut | Action
 More shortcuts can be found [here](https://neo4j.com/developer/guide-neo4j-browser/#_useful_commands_and_keyboard_shortcuts).
 
 
+Once you run the code, you will see a box like this appear in your stream:
+
+![alt text](https://github.com/danieljbradley/cypherphilly/blob/develop/img_tutorial6_stream.png?raw=true "screen shot of stream after you import PPD Complaints")
+
+
 
 Copy the load cypher queries Below in green per dataset section Complaints, Findings and Complainants
 Run the Queries below, which download and process the CSV into the database
@@ -107,6 +112,10 @@ CREATE (:csv_name_here { first_header_title: line.first_header_title, second_hea
 Complaints:
 LOAD CSV WITH HEADERS FROM 'http://cypherphil.ly/content/ppd_complaints.csv' AS line
 CREATE (:PPD_Complaints { cap_number: line.cap_number, date_received: line.date_received, dist_occurrence: line.dist_occurrence, general_cap_classification: line.general_cap_classification, summary: line.summary })
+
+LOAD CSV WITH HEADERS FROM 'http://cypherphil.ly/content/ppd_complaints.csv' AS line
+CREATE (:PPD_Complaints { cap_number: line.cap_number, date_received: line.date_received, dist_occurrence: line.dist_occurrence, general_cap_classification: line.general_cap_classification, summary: line.summary })
+
 
 Findings:
 LOAD CSV WITH HEADERS FROM 'http://cypherphil.ly/content/ppd_complaint_disciplines.csv' AS line
