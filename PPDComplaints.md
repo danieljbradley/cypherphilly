@@ -93,39 +93,33 @@ Shortcut | Action
 
 More shortcuts can be found [here](https://neo4j.com/developer/guide-neo4j-browser/#_useful_commands_and_keyboard_shortcuts).
 
-#### Loading PPD Complaint Data
- 11. From your new Neo4j browser Highlight and copy each section below in green and past them one section at a time into your Neo4j browser Command Line bar at the top and [Click] [Play] after each section pasted into the browser command line bar.  
- Once you have pasted all 6 sections in green you’ll be ready to start querying your datasets in the Neo4j Browser. You can also view your data as nodes by clicking on the Database symbol at the top left of your Neo4j Browser. In the new pop out you’ll see each data set as a tag, click on one to view the visualization of your data
+### Loading PPD Complaint Data
+Instructions for loading data into the sandbox and desktop app appear below.  First, we will take a look at a template to see the general form for importing into a sandbox:
+```
+LOAD CSV WITH HEADERS FROM 'http://website.com/file_name.csv' AS line
+CREATE (:File_Name { header_title1: line.header_title1, header_title2: line.header_title2 })
+```
+`File_Name` is a label.
+`header_title1` and `header_title2` are properties.
 
-Once you run the code, you will see a box like this appear in your stream:
-
-![alt text](https://github.com/danieljbradley/cypherphilly/blob/develop/img_tutorial6_stream.png?raw=true "screen shot of stream after you import PPD Complaints")
-
-
-
-Copy the load cypher queries Below in green per dataset section Complaints, Findings and Complainants
-Run the Queries below, which download and process the CSV into the database
-
-Notes: 
-
-
-
-### Desktop App load
-##### Template for loading data:
+... and for importing into the desktop app:
+**Query 1:**
 ```
 CREATE
 (`0`:File_Name
 {header_title1:"string", header_title2:"string" })
-````
-`File_Name` is a label.
-`header_title1` and `header_title2` are properties.
-
+```
+**Query 2:**
 ```
 LOAD CSV WITH HEADERS FROM 'file:///file_name.csv' AS line
 CREATE (:File_Name header_title1: line.header_title1, header_title2: line.header_title2 })
 ````
 
-##### Load PPD Complaint data into Neo4j Sandbox:
+[Naming rules and recommendations](https://neo4j.com/docs/getting-started/3.5/graphdb-concepts/#graphdb-naming-rules-and-recommendations) will help you avoid confusion when naming labels, properties and relationships.
+
+#### Load PPD Complaint data into Neo4j Sandbox
+Copy a code block below, paste into Neo4j browser and **click Play** or press <kbd>Ctrl</kbd> + <kbd>enter</kbd> to run.  (Do this individually for each code block!)
+
 **Complaints:**
 ```
 LOAD CSV WITH HEADERS FROM 'http://cypherphil.ly/content/ppd_complaints.csv' AS line
@@ -142,8 +136,12 @@ CREATE (:PPD_Complaint_Disciplines  { cap_number: line.cap_number, po_initials: 
 LOAD CSV WITH HEADERS FROM 'http://cypherphil.ly/content/ppd_complaint_complainants.csv' AS line
 CREATE (:PPD_Complaint_Complainants   { cap_number: line.cap_number, complainant_sex: line.complainant_sex, complainant_race: line.complainant_race, complainant_age: line.complainant_age, complainant_initials: line.complainant_initials })
 ```
+Once you run all the code blocks above, you’ll be ready to start querying your datasets in the Neo4j Browser.  You can also view your data as nodes by clicking on the Database symbol at the top left of your Neo4j Browser. In the new pop out you’ll see each data set as a tag, click on one to view the visualization of your data
+![alt text](https://raw.githubusercontent.com/danieljbradley/cypherphilly/develop/img_tutorial9_seenodes.png "screen shot of database symbol and number to click to see all nodes")
 
-##### Load PPD Complaint data into _Neo4j desktop app_:
+#### Load PPD Complaint data into Neo4j desktop app
+Copy a code block below, paste into Neo4j browser and **click Play** or press <kbd>Ctrl</kbd> + <kbd>enter</kbd> to run.  (Do this individually for each code block!)
+
 **Complaints (Query 1):**
 ```
 CREATE
@@ -180,9 +178,10 @@ CREATE
 LOAD CSV WITH HEADERS FROM 'file:///ppd_complaint_complainants.csv' AS line
 CREATE (:PPD_Complaint_Complainants   { cap_number: line.cap_number, complainant_sex: line.complainant_sex, complainant_race: line.complainant_race, complainant_age: line.complainant_age, complainant_initials: line.complainant_initials })
 ```
+Once you run all the code blocks above, you’ll be ready to start querying your datasets in the Neo4j Browser.  You can also view your data as nodes by clicking on the Database symbol at the top left of your Neo4j Browser. In the new pop out you’ll see each data set as a tag, click on one to view the visualization of your data
+![alt text](https://raw.githubusercontent.com/danieljbradley/cypherphilly/develop/img_tutorial9_seenodes.png "screen shot of database symbol and number to click to see all nodes")
 
 #### Sample Queries for PPD Datasets
-
 
 1. Counts **complaints** by **police district**, sorted in descending order
 ```
