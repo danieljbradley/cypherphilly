@@ -1,9 +1,9 @@
 # Philly Graph DB Meetup -  Civic Data Journalism
 ### Importing and querying Philly Police Complaint Data in Neo4j
 Contents:
-* [Background](#my-multi-word-header)
-* [Resources](#my-multi-word-header)
-* [Set up your Neo4j Database](#my-multi-word-header)
+* [Background](#background)
+* [Resources](#resources)
+* [Set up your Neo4j Database](#Set-up-your-Neo4j-Database)
   * [Set up a sandbox](#set-up-a-sandbox)
   * [Set up desktop app](#Set-up-desktop-app)
 * [Cypher Query Intro](#my-multi-word-header)
