@@ -5,7 +5,7 @@ Contents:
 * [Resources](#my-multi-word-header)
 * [Set up your Neo4j Database](#my-multi-word-header)
   * [Set up a sandbox](#set-up-a-sandbox)
-  * [Desktop App set-up](#my-multi-word-header)
+  * [Set up desktop app](#Set up desktop app)
 * [Cypher Query Intro](#my-multi-word-header)
 * [Neo4j Mini-Tour](#my-multi-word-header)
 * [Loading PPD Complaint Data](#my-multi-word-header)
@@ -14,6 +14,7 @@ Contents:
 * [Creating Relationships](#my-multi-word-header)
 * [Sample Queries](#my-multi-word-header)
 * [Data Annotations](#my-multi-word-header)
+* [311 Service and Information Requests](#my-multi-word-header)
 
 ##### Background
 As part of the Philadelphia Police Department's (PPD) accountability processes, PPD has released three datasets surrounding police complaints:
@@ -207,7 +208,7 @@ WHERE n.summary CONTAINS 'assault'
 RETURN n
 ```
 
-3. Keyword Search for (any regular expression of variation of) "assault" in [Complaints] [summary] label
+4. Keyword Search for (any regular expression of variation of) "assault" in [Complaints] [summary] label
 ```
 MATCH (n:PPD_Complaints)
 WHERE n.summary =~ '(?i).*assault.*'
@@ -215,53 +216,56 @@ RETURN n
 ```
 
 
-PPD Complaint Relationships
-This section will help you start building relationships in your graph 
-To Delete A Relationship Label and node relationship 
-MATCH (a:PPD_Complaints)-[r:HaveA]->(b:PPD_Complaint_Complainants) ←- Example Relationship Types Label to be removed
-DELETE r
-
-1st Relationship(Complaints Has A Complainant/s):
+### Creating Relationships
+###### This section will help you start building relationships in your graph.
+1st Relationship: "Complaints Has A Complainant(s)"
+```
 MATCH (a:PPD_Complaints),(b:PPD_Complaint_Complainants)
 WHERE a.cap_number = b.cap_number
 CREATE (a)-[:HAS_A]->(b)
 RETURN a,b
-
-2nd Relationship(Complaints Has A Disciplines):
+```
+2nd Relationship: "Complaints Has A Disciplines"
+```
 MATCH (a:PPD_Complaints),(b:PPD_Complaint_Disciplines)
 WHERE a.cap_number = b.cap_number
 CREATE (a)-[:HAS_A]->(b)
 RETURN a,b
+```
+To Delete A Relationship Label and node relationship:
+```
+MATCH (a:PPD_Complaints)-[r:HaveA]->(b:PPD_Complaint_Complainants)
+DELETE r
+```
 
+### Data Annotations
 
-Data Annotations
-This section will help you start annotating your data to quickly search your data for specific qualities. 
-To Delete A node Label.
-MATCH (n)
-REMOVE n:PoliceOfficers ←- Example Label to be removed
-
-
-1st Annotation (Complaints where summer has assault keyword in any variation):
+###### This section will help you start annotating your data to quickly search your data for specific qualities. 
+Create a Label to identify Complaints where summary has "assault" keyword in any variation:
+```
 MATCH (n:PPD_Complaints)
 WHERE n.summary =~ '(?i).*assault.*'
 SET n :PPD_ASSAULT
 RETURN n
+```
 
+To Delete a node Label:
+```
+MATCH (n)
+REMOVE n:PoliceOfficers ←- Example Label to be removed
+```
 
-
-
-
-
-
-
-
-311 Service and Information Requests
+### 311 Service and Information Requests
 This represents all service and information requests since December 8th, 2014 submitted to Philly311 via the 311 mobile application, calls, walk-ins, emails, the 311 website or social media.
 
-
+Query 1:
+```
 CREATE
 (`0`:public_cases_fc 
 {the_geom:"string", lon:"string", objectid:"string", service_request_id:"string", status:"string", status_notes:"string", service_name:"string", service_code:"string", the_geom_webmercator:"string", requested_datetime:"string", updated_datetime:"string", expected_datetime:"string", address:"string", zipcode:"string", media_url:"string", lat:"string", service_notice:"string" })
-
+```
+Query 2:
+```
 USING PERIODIC COMMIT 500 LOAD CSV WITH HEADERS FROM 'file:///public_cases_fc.csv' AS line
 CREATE (:public_cases_fc { the_geom: line.the_geom, lon: line.lon, objectid: line.objectid, service_request_id: line.service_request_id, service_request_id: line.service_request_id, status: line.status, status_notes: line.status_notes, service_name: line.service_name, service_code: line.service_code, the_geom_webmercator: line.the_geom_webmercator, requested_datetime: line.requested_datetime, updated_datetime: line.updated_datetime, expected_datetime: line.expected_datetime, address: line.address, zipcode: line.zipcode, media_url: line.media_url, lat: line.lat, service_notice: line.service_notice })
+```
