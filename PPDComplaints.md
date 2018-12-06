@@ -16,7 +16,7 @@ Contents:
 * [Data Annotations](#my-multi-word-header)
 
 ##### Background
-As part of the Philadelphia Police Department's (PPD) accountability processes, PPD has released three datasets:
+As part of the Philadelphia Police Department's (PPD) accountability processes, PPD has released three datasets surrounding police complaints:
 
 + **Complaints** - documents the civilian complaints alleging police misconduct
 + **Findings** - provides demographic details of the police officer involved, the allegations, and the status of the PPD's Internal Affairs Division's investigation, and findings (if available) about the allegation
@@ -110,111 +110,109 @@ Notes:
 
 
 
-Guide and Template for Neo4j Create and load: 
-Guide:
-CREATE  ←(This creates the entity Labels from header names from your datasets) 
-(`0`:->PPD_Complaints <--(Your Dataset file name goes here)
-(CSV header titles go here)-->{cap_number:"string", dist_occurrence:"string", general_cap_classification:"string", summary:"string" })
-
-LOAD CSV WITH HEADERS FROM 'file:///ppd_complaints.csv' AS line <--(This Line loads the contents of the CSV into the Neo4j app project database)
-CREATE (:PPD_Complaints←(dataset name) (CSV headers)--> { cap_number: line.cap_number, dist_occurrence: line.dist_occurrence, general_cap_classification: line.general_cap_classification, summary: line.summary })<--(This Line created nodes for the CSV you loaded into the dataset)
-
-Example Blank Template:
+### Desktop App load
+##### Template for loading data:
+```
 CREATE
-(`0`:csv_name_here 
-{first_header_title:"string", second_header_title:"string", thrid_header_title:"string", forth_header_title:"string" })
-
-LOAD CSV WITH HEADERS FROM 'file:///csv_name_here.csv' AS line
-CREATE (:csv_name_here { first_header_title: line.first_header_title, second_header_title: line.second_header_title, thrid_header_title: line.thrid_header_title, forth_header_title: line.forth_header_title })
-
-
-
-
-
-
-
-
-
-
-Complaints:
-LOAD CSV WITH HEADERS FROM 'http://cypherphil.ly/content/ppd_complaints.csv' AS line
-CREATE (:PPD_Complaints { cap_number: line.cap_number, date_received: line.date_received, dist_occurrence: line.dist_occurrence, general_cap_classification: line.general_cap_classification, summary: line.summary })
-
-Findings:
-LOAD CSV WITH HEADERS FROM 'http://cypherphil.ly/content/ppd_complaint_disciplines.csv' AS line
-CREATE (:PPD_Complaint_Disciplines  { cap_number: line.cap_number, po_initials: line.po_initials, po_race: line.po_race, po_sex: line.po_sex, allegations_investigated: line.allegations_investigated, investigative_findings: line.investigative_findings, disciplinary_findings: line.disciplinary_findings })
-
-Complainants:
-LOAD CSV WITH HEADERS FROM 'http://cypherphil.ly/content/ppd_complaint_complainants.csv' AS line
-CREATE (:PPD_Complaint_Complainants   { cap_number: line.cap_number, complainant_sex: line.complainant_sex, complainant_race: line.complainant_race, complainant_age: line.complainant_age, complainant_initials: line.complainant_initials })
-
-
-
-DataSet 1 formatting: (Copy and Paste Cypher Code in green One section at a time into your local neo4j browser instance) 
+(`0`:File_Name
+{header_title1:"string", header_title2:"string" })
+````
+`File_Name` is a label.
+`header_title1` and `header_title2` are properties.
 
 ```
-ppd_complaints:
+LOAD CSV WITH HEADERS FROM 'file:///file_name.csv' AS line
+CREATE (:File_Name header_title1: line.header_title1, header_title2: line.header_title2 })
+````
+
+##### Load PPD Complaint data into Neo4j Sandbox:
+**Complaints:**
+```
+LOAD CSV WITH HEADERS FROM 'http://cypherphil.ly/content/ppd_complaints.csv' AS line
+CREATE (:PPD_Complaints { cap_number: line.cap_number, date_received: line.date_received, dist_occurrence: line.dist_occurrence, general_cap_classification: line.general_cap_classification, summary: line.summary })
+```
+
+**Findings:**
+```
+LOAD CSV WITH HEADERS FROM 'http://cypherphil.ly/content/ppd_complaint_disciplines.csv' AS line
+CREATE (:PPD_Complaint_Disciplines  { cap_number: line.cap_number, po_initials: line.po_initials, po_race: line.po_race, po_sex: line.po_sex, allegations_investigated: line.allegations_investigated, investigative_findings: line.investigative_findings, disciplinary_findings: line.disciplinary_findings })
+```
+**Complainants:**
+```
+LOAD CSV WITH HEADERS FROM 'http://cypherphil.ly/content/ppd_complaint_complainants.csv' AS line
+CREATE (:PPD_Complaint_Complainants   { cap_number: line.cap_number, complainant_sex: line.complainant_sex, complainant_race: line.complainant_race, complainant_age: line.complainant_age, complainant_initials: line.complainant_initials })
+```
+
+##### Load PPD Complaint data into _Neo4j desktop app_:
+**Complaints (Query 1):**
+```
 CREATE
 (`0`:PPD_Complaints 
 {cap_number:"string", date_received:"string",  dist_occurrence:"string", general_cap_classification:"string", summary:"string" })
 ```
-
+**Complaints (Query 2):**
+```
 LOAD CSV WITH HEADERS FROM 'file:///ppd_complaints.csv' AS line
 CREATE (:PPD_Complaints { cap_number: line.cap_number, date_received: line.date_received, dist_occurrence: line.dist_occurrence, general_cap_classification: line.general_cap_classification, summary: line.summary })
+```
 
-
-
-DataSet 2 formatting: (Copy and Paste Code in green One section at a time into your local neo4j browser instance)
-Note: this dataset has multiple rows for cap_number, which is what Neo4j uses to join the nodes.  So there will be some rows that cannot join to the complaints and complainants data. 
-
-ppd_complaint_disciplines:
+**Findings (Query 1):**
+_Note: this dataset has multiple rows for cap_number, which is what Neo4j uses to join the nodes.  So there will be some rows that cannot join to the complaints and complainants data._ 
+```
 CREATE
 (`0`:PPD_Complaint_Disciplines 
 {cap_number:"string", po_initials:"string", po_race:"string", po_sex:"string", allegations_investigated:"string", investigative_findings:"string", disciplinary_findings:"string" })
-
-
+```
+**Findings (Query 2):**
+```
 LOAD CSV WITH HEADERS FROM 'file:///ppd_complaint_disciplines.csv' AS line
 CREATE (:PPD_Complaint_Disciplines  { cap_number: line.cap_number, po_initials: line.po_initials, po_race: line.po_race, po_sex: line.po_sex, allegations_investigated: line.allegations_investigated, investigative_findings: line.investigative_findings, disciplinary_findings: line.disciplinary_findings })
-
-
-DataSet 3 formatting: (Copy and Paste Code in green One section at a time into your local neo4j browser instance)
-
-
-
+```
+**Complainants (Query 1):**
 ppd_complaint_complainants:
+```
 CREATE
 (`0`:PPD_Complaint_Complainants 
 {cap_number:"string", complainant_sex:"string", complainant_race:"string", complainant_age:"string", complainant_initials:"string" })
-
+```
+**Complainants (Query 2):**
+```
 LOAD CSV WITH HEADERS FROM 'file:///ppd_complaint_complainants.csv' AS line
 CREATE (:PPD_Complaint_Complainants   { cap_number: line.cap_number, complainant_sex: line.complainant_sex, complainant_race: line.complainant_race, complainant_age: line.complainant_age, complainant_initials: line.complainant_initials })
+```
+
+#### Sample Queries for PPD Datasets
 
 
-Sample Queries for PPD Datasets 
-
-
-1st  Example Query (Finds [District] with the Highest [Cap Number] occurrences in [Descending Order])
+1. Counts **complaints** by **police district**, sorted in descending order
+```
 MATCH (n:PPD_Complaints)
 WITH COUNT(DISTINCT n.cap_number) AS occurrences, toInteger(n.dist_occurrence) AS district
 RETURN occurrences, district
 ORDER BY occurrences DESC
+```
 
-2nd Example Query (Counts [Complaints] with the Highest occurrence by [Type] and lists out in [Descending Order])
+2. Counts **complaints** by **type**, sorted in descending order
+```
 MATCH (n)  
 WITH COUNT(DISTINCT n.cap_number) as complaints, n.general_cap_classification as type
 RETURN type, complaints
 ORDER BY complaints DESC
+```
 
-3rd Keyword Search in [Complaints]  [summary] Label (assault)
+3. Keyword Search for "assault" in [Complaints] [summary] label
+```
 MATCH (n:PPD_Complaints)
 WHERE n.summary CONTAINS 'assault'
 RETURN n
+```
 
-Keyword Search in [Complaints]  [summary] label (any regular expression of variation of Assault)
+3. Keyword Search for (any regular expression of variation of) "assault" in [Complaints] [summary] label
+```
 MATCH (n:PPD_Complaints)
 WHERE n.summary =~ '(?i).*assault.*'
 RETURN n
-
+```
 
 
 PPD Complaint Relationships
