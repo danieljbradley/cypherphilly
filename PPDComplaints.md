@@ -3,10 +3,14 @@
 Contents:
 * [Background](#my-multi-word-header)
 * [Resources](#my-multi-word-header)
-* [Set up your Neo4j database](#my-multi-word-header)
+* [Set up your Neo4j Database](#my-multi-word-header)
+  * [Set up a sandbox](#set-up-a-sandbox)
+  * [Desktop App set-up](#my-multi-word-header)
 * [Cypher Query Intro](#my-multi-word-header)
-* [Loading PPD Complaint Data (Sandbox)](#my-multi-word-header)
-* [Loading PPD Complaint Data (Desktop)](#my-multi-word-header)
+* [Neo4j Mini-Tour](#my-multi-word-header)
+* [Loading PPD Complaint Data](#my-multi-word-header)
+  * [Sandbox load](#my-multi-word-header)
+  * [Desktop App load](#my-multi-word-header)
 * [Creating Relationships](#my-multi-word-header)
 * [Sample Queries](#my-multi-word-header)
 * [Data Annotations](#my-multi-word-header)
@@ -14,9 +18,9 @@ Contents:
 ##### Background
 As part of the Philadelphia Police Department's (PPD) accountability processes, PPD has released three datasets:
 
-+ Complaints - documents the civilian complaints alleging police misconduct
-+ Findings - provides demographic details of the police officer involved, the allegations, and the status of the PPD's Internal Affairs Division's investigation, and findings (if available) about the allegation
-+ Complainants - contains demographic information about the person who filed the complaint
++ **Complaints** - documents the civilian complaints alleging police misconduct
++ **Findings** - provides demographic details of the police officer involved, the allegations, and the status of the PPD's Internal Affairs Division's investigation, and findings (if available) about the allegation
++ **Complainants** - contains demographic information about the person who filed the complaint
 
 Includes data from 2013 to the present year and is updated monthly.
 
@@ -39,11 +43,7 @@ Visualization Ideas:
 + [Scrolly Telly Example](https://philadelphia.maps.arcgis.com/apps/MapJournal/index.html?appid=d498be2dde18426193679f5e9ce0e6e5)
 
 ## Set up your Neo4j database
-There are a few ways to get set up with your own Neo4j database:
-
-+ install the [desktop software](https://neo4j.com/download/)
-+ set up a full version on a [server](https://neo4j.com/download-center/#releases)
-+ or use Neo4j’s publicly available [Sandboxes](https://neo4j.com/sandbox-v2/) (a place in the cloud where you can practice) - see below for instructions
+Please see instructions below for how to set up a sandbox or the desktop app.  You can also set up a full version on a [server](https://neo4j.com/download-center/#releases)
 
 #### Set up a sandbox:
 
@@ -53,8 +53,9 @@ There are a few ways to get set up with your own Neo4j database:
 4. Wait a few seconds while the Sandbox is set up.
 5. Under the  __Get Started with your Neo4j Sandbox__ #1,  follow the  __Visit the Neo4j Browser__ link.
 
+
 #### Set up desktop app:
-Neo4j Desktop User Interface Guide: https://neo4j.com/developer/guide-neo4j-desktop/#_installing_and_starting_neo4j_desktop
+
 1. Download Neo4j desktop app [here](https://neo4j.com/download/).
 2. Open the **Neo4j Desktop App**.
 3. Scroll down and click **New Graph**.
@@ -64,7 +65,9 @@ Neo4j Desktop User Interface Guide: https://neo4j.com/developer/guide-neo4j-desk
 7. Next, click **Open Folder** and select the **Import Folder** for the selection of folders keep that folder.
 8. Download the 3 PPD Complaint CSV files [here](https://drive.google.com/drive/folders/1iJnBiUgt9J8TGbME4fzZz97zGCklWHBM?usp=sharing).
 9. Unzip the CSV’s you just downloaded and drag them into the import folder from step 7.
- 10. **Close** the folder and go back to your neo4j desktop app and **click the Play button** (looks like an arrowhead), then **click the Open Browser** button and a new Neo4j Browser will pop up.
+10. **Close** the folder and go back to your neo4j desktop app and **click the Play button** (looks like an arrowhead), then **click the Open Browser** button and a new Neo4j Browser will pop up.
+
+[Neo4j Desktop User Interface Guide](https://neo4j.com/developer/guide-neo4j-desktop/#_installing_and_starting_neo4j_desktop) will help you learn your way around the desktop app.
  
  #### Mini-tour of Neo4j browser
 The two images below highlight the main components of the Neo4j Browser
@@ -148,7 +151,7 @@ CREATE (:PPD_Complaint_Complainants   { cap_number: line.cap_number, complainant
 
 
 DataSet 1 formatting: (Copy and Paste Cypher Code in green One section at a time into your local neo4j browser instance) 
-# IS THIS A NECESSARY STEP?
+
 ```
 ppd_complaints:
 CREATE
