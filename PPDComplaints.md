@@ -80,11 +80,11 @@ The image below shows the controls for the editor:
 Shortcut | Action
 :---: | ---
 <kbd>up</kbd> | brings previous query from history into editor (single line query only) 
-<kbd>control</kbd> + <kbd>up</kbd> or <kbd>command</kbd> + <kbd>up</kbd>| brings previous query from history into editor (multi-line query)
+<kbd>Ctrl</kbd> + <kbd>up</kbd> or <kbd>Cmd</kbd> + <kbd>up</kbd>| brings previous query from history into editor (multi-line query)
 <kbd>down</kbd> | brings "next" query from history into editor (single line query only)
-<kbd>control</kbd> + <kbd>down</kbd> or <kbd>command</kbd> + <kbd>down</kbd> | brings "next" query from history into editor (multi-line query)
+<kbd>Ctrl</kbd> + <kbd>down</kbd> or <kbd>Cmd</kbd> + <kbd>down</kbd> | brings "next" query from history into editor (multi-line query)
 <kbd>shift</kbd> + <kbd>enter</kbd> | new line for multi-line queries (only needed for 1st new line)
-<kbd>control</kbd> + <kbd>enter</kbd> or <kbd>command</kbd> + <kbd>enter</kbd> | runs multi-line query
+<kbd>Ctrl</kbd> + <kbd>enter</kbd> or <kbd>Cmd</kbd> + <kbd>enter</kbd> | runs multi-line query
 
 More shortcuts can be found [here](https://neo4j.com/developer/guide-neo4j-browser/#_useful_commands_and_keyboard_shortcuts).
 
