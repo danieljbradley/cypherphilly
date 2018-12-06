@@ -5,7 +5,7 @@ Contents:
 * [Resources](#my-multi-word-header)
 * [Set up your Neo4j Database](#my-multi-word-header)
   * [Set up a sandbox](#set-up-a-sandbox)
-  * [Set up desktop app](#Set up desktop app)
+  * [Set up desktop app](#Set-up-desktop-app)
 * [Cypher Query Intro](#my-multi-word-header)
 * [Neo4j Mini-Tour](#my-multi-word-header)
 * [Loading PPD Complaint Data](#my-multi-word-header)
