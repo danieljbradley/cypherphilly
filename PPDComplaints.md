@@ -1,14 +1,14 @@
 # Philly Graph DB Meetup -  Civic Data Journalism
 ### Importing and querying Philly Police Complaint Data in Neo4j
 Contents:
-[Background](#my-multi-word-header)
-[Resources](#my-multi-word-header)
-[Set up your Neo4j database](#my-multi-word-header)
-[Cypher Query Intro](#my-multi-word-header)
-[Loading PPD Complaint Data](#my-multi-word-header)
-[Creating Relationships](#my-multi-word-header)
-[Sample Queries](#my-multi-word-header)
-[Data Annotations](#my-multi-word-header)
+-[Background](#my-multi-word-header)
+-[Resources](#my-multi-word-header)
+-[Set up your Neo4j database](#my-multi-word-header)
+-[Cypher Query Intro](#my-multi-word-header)
+-[Loading PPD Complaint Data](#my-multi-word-header)
+-[Creating Relationships](#my-multi-word-header)
+-[Sample Queries](#my-multi-word-header)
+-[Data Annotations](#my-multi-word-header)
 
 ##### Background
 As part of the Philadelphia Police Department's (PPD) accountability processes, PPD has released three datasets:
@@ -77,6 +77,7 @@ The image below shows the controls for the editor:
 
 ![alt text](https://github.com/danieljbradley/cypherphilly/blob/develop/img_tutorial3_editor.PNG?raw=true "Neo4j editor screenshot with arrows and labels")
 
+#### Keyboard shortcuts
 Shortcut | Action
 :---: | ---
 <kbd>up</kbd> | brings previous query from history into editor (single line query only) 
