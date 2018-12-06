@@ -6,17 +6,17 @@ Contents:
 * [Set up your Neo4j Database](#Set-up-your-Neo4j-Database)
   * [Set up a sandbox](#set-up-a-sandbox)
   * [Set up desktop app](#Set-up-desktop-app)
-* [Cypher Query Intro](#my-multi-word-header)
-* [Neo4j Mini-Tour](#my-multi-word-header)
-* [Loading PPD Complaint Data](#my-multi-word-header)
-  * [Sandbox load](#my-multi-word-header)
-  * [Desktop App load](#my-multi-word-header)
-* [Creating Relationships](#my-multi-word-header)
-* [Sample Queries](#my-multi-word-header)
-* [Data Annotations](#my-multi-word-header)
-* [311 Service and Information Requests](#my-multi-word-header)
+* [Cypher Query Intro](#cypher-query-intro)
+* [Neo4j Mini-Tour](#neo4j-mini-tour)
+* [Loading PPD Complaint Data](#loading-ppd-complaint-data)
+  * [Sandbox load](#sandbox-load)
+  * [Desktop App load](#desktop-app-load)
+* [Creating Relationships](#creating-relationships)
+* [Sample Queries](#sample-queries)
+* [Data Annotations](#data-annotations)
+* [311 Service and Information Requests](#311-service-and-information-requests)
 
-##### Background
+### Background
 As part of the Philadelphia Police Department's (PPD) accountability processes, PPD has released three datasets surrounding police complaints:
 
 + **Complaints** - documents the civilian complaints alleging police misconduct
@@ -25,7 +25,7 @@ As part of the Philadelphia Police Department's (PPD) accountability processes, 
 
 Includes data from 2013 to the present year and is updated monthly.
 
-#### Resources
+### Resources
 
 Data:
 + [PPD Complaints Datasets (Cleaned) from Cypher Philly](https://drive.google.com/drive/folders/1iJnBiUgt9J8TGbME4fzZz97zGCklWHBM)
@@ -43,10 +43,10 @@ Organizations:
 Visualization Ideas:
 + [Scrolly Telly Example](https://philadelphia.maps.arcgis.com/apps/MapJournal/index.html?appid=d498be2dde18426193679f5e9ce0e6e5)
 
-## Set up your Neo4j database
+### Set up your Neo4j database
 Please see instructions below for how to set up a sandbox or the desktop app.  You can also set up a full version on a [server](https://neo4j.com/download-center/#releases)
 
-#### Set up a sandbox:
+### Set up a sandbox:
 
 1. Follow [this link.](https://neo4j.com/sandbox-v2/)
 2. Click __Start Now__ then __Sign Up__ or __Log In__ if you already have an account.
