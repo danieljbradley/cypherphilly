@@ -1,29 +1,25 @@
 # Philly Graph DB Meetup -  Civic Data Journalism
 ### Importing and querying Philly Police Complaint Data in Neo4j
-
-
-[click on this link](#my-multi-word-header)
-
-
+Contents:
+[Background](#my-multi-word-header)
+[Resources](#my-multi-word-header)
+[Set up your Neo4j database](#my-multi-word-header)
+[Cypher Query Intro](#my-multi-word-header)
+[Loading PPD Complaint Data](#my-multi-word-header)
+[Creating Relationships](#my-multi-word-header)
+[Sample Queries](#my-multi-word-header)
+[Data Annotations](#my-multi-word-header)
 
 ##### Background
-The Philadelphia Police Department (PPD) is the nation's fourth largest police department, with over 6300 sworn members and 800 civilian personnel. The PPD is the primary law enforcement agency responsible for serving Philadelphia County, extending over 140 square-miles in which approximately 1.5 million reside.
+As part of the Philadelphia Police Department's (PPD) accountability processes, PPD has released three datasets:
 
-While the PPD has a very noble mission and __very tough__ job to do, occasionally some officers fail to follow through with this mission.  Our goal is to look through open data related to Philadelphia Police Complaints, search for patterns and, perhaps, identify officers who repeatedly violate their duties, so that this information can be shared with the public.
++ Complaints - documents the civilian complaints alleging police misconduct
++ Findings - provides demographic details of the police officer involved, the allegations, and the status of the PPD's Internal Affairs Division's investigation, and findings (if available) about the allegation
++ Complainants - contains demographic information about the person who filed the complaint
 
-##### About the data
-There are 3 data sets that we will join together with neo4j
-+ Complaints - contains information about the officer and the incident that sparked the complaint
-+ Findings - contains information about the result of the complaint
-+ Complainants - contains information about the person who filed the complaint
-
-Unfortunately, we only have officer initials i.e. "JS" instead of full name "John Smith."  This means that we do not have a unique identifier for each officer.  Food for thought: a pair of initials within a police  district could still refer to more than one officer.  To further confuse things, officers are sometimes transferred to other districts.  Please keep this in mind while working with this data.
+Includes data from 2013 to the present year and is updated monthly.
 
 #### Resources
-
-Organizations:
-+ [Philly Graph DB Meetup Page](https://www.meetup.com/Philly-GraphDB/)
-+ [OpenDataPhilly](https://www.opendataphilly.org/)
 
 Data:
 + [PPD Complaints Datasets (Cleaned) from Cypher Philly](https://drive.google.com/drive/folders/1iJnBiUgt9J8TGbME4fzZz97zGCklWHBM)
@@ -31,7 +27,12 @@ Data:
 
 Graph DB/Cypher Resources:
 + [Intro to Cypher Query Language](https://neo4j.com/developer/cypher-query-language/)
++ [Neo4j Cypher Reference Card](https://neo4j.com/docs/cypher-refcard/current/)
 + [Modeling Your Data with Arrows Tool](http://www.apcjones.com/arrows/#)
+
+Organizations:
++ [Philly Graph DB Meetup Page](https://www.meetup.com/Philly-GraphDB/)
++ [OpenDataPhilly](https://www.opendataphilly.org/)
 
 Visualization Ideas:
 + [Scrolly Telly Example](https://philadelphia.maps.arcgis.com/apps/MapJournal/index.html?appid=d498be2dde18426193679f5e9ce0e6e5)
@@ -43,7 +44,7 @@ There are a few ways to get set up with your own Neo4j database:
 + set up a full version on a [server](https://neo4j.com/download-center/#releases)
 + or use Neo4j’s publicly available [Sandboxes](https://neo4j.com/sandbox-v2/) (a place in the cloud where you can practice) - see below for instructions
 
-#### Set up your sandbox:
+#### Set up a sandbox:
 
 1. Follow [this link.](https://neo4j.com/sandbox-v2/)
 2. Click __Start Now__ then __Sign Up__ or __Log In__ if you already have an account.
@@ -51,7 +52,20 @@ There are a few ways to get set up with your own Neo4j database:
 4. Wait a few seconds while the Sandbox is set up.
 5. Under the  __Get Started with your Neo4j Sandbox__ #1,  follow the  __Visit the Neo4j Browser__ link.
 
-## Mini-tour of Neo4j browser
+#### Set up desktop app:
+Neo4j Desktop User Interface Guide: https://neo4j.com/developer/guide-neo4j-desktop/#_installing_and_starting_neo4j_desktop
+1. Download Neo4j desktop app [here](https://neo4j.com/download/).
+2. Open the **Neo4j Desktop App**.
+3. Scroll down and click **New Graph**.
+4. Click on **Create a local graph**
+5. Name the Graph **PPD Complaints** and **set your password**.
+6. In the new Graph Box your created Click **Manage**.
+7. Next, click **Open Folder** and select the **Import Folder** for the selection of folders keep that folder.
+8. Download the 3 PPD Complaint CSV files [here](https://drive.google.com/drive/folders/1iJnBiUgt9J8TGbME4fzZz97zGCklWHBM?usp=sharing).
+9. Unzip the CSV’s you just downloaded and drag them into the import folder from step 7.
+ 10. **Close** the folder and go back to your neo4j desktop app and **click the Play button** (looks like an arrowhead), then **click the Open Browser** button and a new Neo4j Browser will pop up.
+ 
+ #### Mini-tour of Neo4j browser
 The two images below highlight the main components of the Neo4j Browser
 + On the top is the __editor__
 + On the left hand side is the __sidebar__
@@ -63,17 +77,30 @@ The image below shows the controls for the editor:
 
 ![alt text](https://github.com/danieljbradley/cypherphilly/blob/develop/img_tutorial3_editor.PNG?raw=true "Neo4j editor screenshot with arrows and labels")
 
-In a minute, we will copy and paste some code into the editor.  But first, let's look at some shortcuts that will help you work more effectively in the editor:
-
 Shortcut | Action
 :---: | ---
-<kbd>up</kbd> | brings back last executed code
-<kbd>down</kbd> | brings back last executed code
-<kbd>shift</kbd> + <kbd>enter</kbd> | brings back last executed code
-
+<kbd>up</kbd> | brings previous query from history into editor (single line query only) 
+<kbd>control</kbd> + <kbd>up</kbd> or <kbd>command</kbd> + <kbd>up</kbd>| brings previous query from history into editor (multi-line query)
+<kbd>down</kbd> | brings "next" query from history into editor (single line query only)
+<kbd>control</kbd> + <kbd>down</kbd> or <kbd>command</kbd> + <kbd>down</kbd> | brings "next" query from history into editor (multi-line query)
+<kbd>shift</kbd> + <kbd>enter</kbd> | new line for multi-line queries (only needed for 1st new line)
+<kbd>control</kbd> + <kbd>enter</kbd> or <kbd>command</kbd> + <kbd>enter</kbd> | runs multi-line query
 
 More shortcuts can be found [here](https://neo4j.com/developer/guide-neo4j-browser/#_useful_commands_and_keyboard_shortcuts).
-### My Multi Word Header
+
+#### Loading PPD Complaint Data
+ 11. From your new Neo4j browser Highlight and copy each section below in green and past them one section at a time into your Neo4j browser Command Line bar at the top and [Click] [Play] after each section pasted into the browser command line bar.  
+ Once you have pasted all 6 sections in green you’ll be ready to start querying your datasets in the Neo4j Browser. You can also view your data as nodes by clicking on the Database symbol at the top left of your Neo4j Browser. In the new pop out you’ll see each data set as a tag, click on one to view the visualization of your data
+
+
+
+
+
+
+
+
+
+In a minute, we will copy and paste some code into the editor.  But first, let's look at some shortcuts that will help you work more effectively in the editor:
 
 Once you run the code, you will see a box like this appear in your stream:
 
