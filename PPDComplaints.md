@@ -6,8 +6,7 @@ Contents:
 * [Set up your Neo4j Database](#Set-up-your-Neo4j-Database)
   * [Set up a sandbox](#set-up-a-sandbox)
   * [Set up desktop app](#Set-up-desktop-app)
-* [Cypher Query Intro](#cypher-query-intro)
-* [Neo4j Mini-Tour](#neo4j-mini-tour)
+* [Mini-tour of Neo4j browser](#mini-tour-of-neo4j-browser)
 * [Loading PPD Complaint Data](#loading-ppd-complaint-data)
   * [Sandbox load](#sandbox-load)
   * [Desktop App load](#desktop-app-load)
@@ -46,7 +45,7 @@ Visualization Ideas:
 ### Set up your Neo4j database
 Please see instructions below for how to set up a sandbox or the desktop app.  You can also set up a full version on a [server](https://neo4j.com/download-center/#releases)
 
-### Set up a sandbox:
+#### Set up a sandbox:
 
 1. Follow [this link.](https://neo4j.com/sandbox-v2/)
 2. Click __Start Now__ then __Sign Up__ or __Log In__ if you already have an account.
@@ -70,7 +69,7 @@ Please see instructions below for how to set up a sandbox or the desktop app.  Y
 
 [Neo4j Desktop User Interface Guide](https://neo4j.com/developer/guide-neo4j-desktop/#_installing_and_starting_neo4j_desktop) will help you learn your way around the desktop app.
  
- #### Mini-tour of Neo4j browser
+ ### Mini-tour of Neo4j browser
 The two images below highlight the main components of the Neo4j Browser
 + On the top is the __editor__
 + On the left hand side is the __sidebar__
