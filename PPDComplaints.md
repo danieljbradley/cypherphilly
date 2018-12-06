@@ -1,14 +1,15 @@
 # Philly Graph DB Meetup -  Civic Data Journalism
 ### Importing and querying Philly Police Complaint Data in Neo4j
 Contents:
--[Background](#my-multi-word-header)
--[Resources](#my-multi-word-header)
--[Set up your Neo4j database](#my-multi-word-header)
--[Cypher Query Intro](#my-multi-word-header)
--[Loading PPD Complaint Data](#my-multi-word-header)
--[Creating Relationships](#my-multi-word-header)
--[Sample Queries](#my-multi-word-header)
--[Data Annotations](#my-multi-word-header)
+* [Background](#my-multi-word-header)
+* [Resources](#my-multi-word-header)
+* [Set up your Neo4j database](#my-multi-word-header)
+* [Cypher Query Intro](#my-multi-word-header)
+* [Loading PPD Complaint Data (Sandbox)](#my-multi-word-header)
+* [Loading PPD Complaint Data (Desktop)](#my-multi-word-header)
+* [Creating Relationships](#my-multi-word-header)
+* [Sample Queries](#my-multi-word-header)
+* [Data Annotations](#my-multi-word-header)
 
 ##### Background
 As part of the Philadelphia Police Department's (PPD) accountability processes, PPD has released three datasets:
@@ -93,16 +94,6 @@ More shortcuts can be found [here](https://neo4j.com/developer/guide-neo4j-brows
  11. From your new Neo4j browser Highlight and copy each section below in green and past them one section at a time into your Neo4j browser Command Line bar at the top and [Click] [Play] after each section pasted into the browser command line bar.  
  Once you have pasted all 6 sections in green you’ll be ready to start querying your datasets in the Neo4j Browser. You can also view your data as nodes by clicking on the Database symbol at the top left of your Neo4j Browser. In the new pop out you’ll see each data set as a tag, click on one to view the visualization of your data
 
-
-
-
-
-
-
-
-
-In a minute, we will copy and paste some code into the editor.  But first, let's look at some shortcuts that will help you work more effectively in the editor:
-
 Once you run the code, you will see a box like this appear in your stream:
 
 ![alt text](https://github.com/danieljbradley/cypherphilly/blob/develop/img_tutorial6_stream.png?raw=true "screen shot of stream after you import PPD Complaints")
@@ -146,10 +137,6 @@ Complaints:
 LOAD CSV WITH HEADERS FROM 'http://cypherphil.ly/content/ppd_complaints.csv' AS line
 CREATE (:PPD_Complaints { cap_number: line.cap_number, date_received: line.date_received, dist_occurrence: line.dist_occurrence, general_cap_classification: line.general_cap_classification, summary: line.summary })
 
-LOAD CSV WITH HEADERS FROM 'http://cypherphil.ly/content/ppd_complaints.csv' AS line
-CREATE (:PPD_Complaints { cap_number: line.cap_number, date_received: line.date_received, dist_occurrence: line.dist_occurrence, general_cap_classification: line.general_cap_classification, summary: line.summary })
-
-
 Findings:
 LOAD CSV WITH HEADERS FROM 'http://cypherphil.ly/content/ppd_complaint_disciplines.csv' AS line
 CREATE (:PPD_Complaint_Disciplines  { cap_number: line.cap_number, po_initials: line.po_initials, po_race: line.po_race, po_sex: line.po_sex, allegations_investigated: line.allegations_investigated, investigative_findings: line.investigative_findings, disciplinary_findings: line.disciplinary_findings })
@@ -159,41 +146,15 @@ LOAD CSV WITH HEADERS FROM 'http://cypherphil.ly/content/ppd_complaint_complaina
 CREATE (:PPD_Complaint_Complainants   { cap_number: line.cap_number, complainant_sex: line.complainant_sex, complainant_race: line.complainant_race, complainant_age: line.complainant_age, complainant_initials: line.complainant_initials })
 
 
-Getting Started with the Neo4j desktop app:
-
-Neo4j Desktop User Interface Guide: https://neo4j.com/developer/guide-neo4j-desktop/#_installing_and_starting_neo4j_desktop
-Desktop Walkthrough Steps:
-Download Neo4j: https://neo4j.com/download/
-Open the [Neo4j Desktop App]
-Scroll down and click [New Graph]
-Click on [Create a local graph]
-Name Graph [PPD Complaints] and set password to [password]
-In the new Graph Box your created Click [Manage] 
-Next, click [Open Folder] and select the [Import] Folder for the selection of folders keep that folder open and go to your browser.
-Past this link to the google drive with all of the datasets for the PPD complaints https://drive.google.com/drive/folders/1iJnBiUgt9J8TGbME4fzZz97zGCklWHBM?usp=sharing and [Download] all 3 complaints CSV’s for the google drive folder.
-Go to your desktop and unzip the CSV’s you just downloaded and drag them into the import folder you should still have open.
- Once the CSV’s are in your import folder [Close] the folder and go back to your neo4j desktop app and [Click] the Play button(looks like an arrowhead), then [Click] the [Open Browser] button. And sew Neo4j Browser will pop up.
- From your new Neo4j browser Highlight and copy each section below in green and past them one section at a time into your Neo4j browser Command Line bar at the top and [Click] [Play] after each section pasted into the browser command line bar.  
- Once you have pasted all 6 sections in green you’ll be ready to start querying your datasets in the Neo4j Browser. You can also view your data as nodes by clicking on the Database symbol at the top left of your Neo4j Browser. In the new pop out you’ll see each data set as a tag, click on one to view the visualization of your data
-Intro to Cypher: https://neo4j.com/developer/cypher-query-language/
-OpenData Philly Website:  https://www.opendataphilly.org/
-
-
-
-Complaints Against Police
-As part of the Philadelphia Police Department's (PPD) accountability processes, PPD has released two datasets: The Complaints Against Police (CAP) dataset documents the civilian complaints alleging police misconduct and the CAP Findings dataset provides demographic details of the police officer involved, the allegations, and the status of the PPD's Internal Affairs Division's investigation of and findings (if available) about the allegation. Includes data from 2013 to the present year. Updated monthly.
-Datasets: 
-http://cypherphil.ly/content/ppd_complaints.csv
-http://cypherphil.ly/content/ppd_complaint_disciplines.csv
-http://cypherphil.ly/content/ppd_complaint_complainants.csv
-
 
 DataSet 1 formatting: (Copy and Paste Cypher Code in green One section at a time into your local neo4j browser instance) 
-
+# IS THIS A NECESSARY STEP?
+'''
 ppd_complaints:
 CREATE
 (`0`:PPD_Complaints 
 {cap_number:"string", date_received:"string",  dist_occurrence:"string", general_cap_classification:"string", summary:"string" })
+'''
 
 LOAD CSV WITH HEADERS FROM 'file:///ppd_complaints.csv' AS line
 CREATE (:PPD_Complaints { cap_number: line.cap_number, date_received: line.date_received, dist_occurrence: line.dist_occurrence, general_cap_classification: line.general_cap_classification, summary: line.summary })
